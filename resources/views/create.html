@@ -1,0 +1,185 @@
+Guide::create(["title" => "Gayo Wine with Tetsu Katsuya Method",
+"guide_category_id" => 1,
+"slug" => "gayo-wine-with-tetsu-katsuya-method",
+"origin" => "Gayo Highland, Aceh",
+"proses"=> "Wine Process",
+"notes" => "Red Wine, Fruity",
+"ratio" => "15",
+"body" => "[[0.25,45],[0.15,45],[0.20,45],[0.20,45],[0.20,45]]"])
+
+Guide::create([
+"title" => "Gayo Wine Tubruk",
+"guide_category_id" => 2,
+"slug" => "gayo-wine-tubruk",
+"origin" => "Gayo Highland, Aceh",
+"proses"=> "Wine Process",
+"notes" => "Red Wine, Fruity",
+"ratio" => "18",
+"body" => "[[1,180]]"
+])
+
+Post::create(["title" => "Judul Tiga",
+"category_id" => 2,
+"slug" => "judul-tiga",
+"excerpt"=>"Lorem Empat dolor sit, amet consectetur adipisicing elit. Vitae, tempora minima. Tempore iste asperiores",
+"body"=>"Lorem Empat dolor sit amet consectetur adipisicing elit. Dignissimos voluptas repellat dolore sit magnam saepe. Eos incidunt ducimus modi beatae fugit alias nihil corrupti! Corporis sapiente tenetur nam nobis optio iure 
+eos perferendis distinctio, dolorem reprehenderit non recusandae voluptatem quae?
+Lorem, Empat dolor sit amet consectetur adipisicing elit. Laudantium quisquam quo provident, aperiam consectetur sequi deserunt iure consequuntur facere, harum neque qui soluta perferendis sit, odit iste aliquid dicta itaque."   
+])
+
+Category::create([
+"name" => "Coffee Tools",
+"slug" => "coffee-tools",
+])
+Category::create([
+"name" => "Single Origin Coffee",
+"slug" => "single-origin-coffee",
+])
+GuideCategory::create([
+"name" => "V60",
+"slug" => "v60"
+])
+GuideCategory::create([
+"name" => "Tubruk",
+"slug" => "tubruk"
+])
+
+// {{-- {{ dd($pourings->pouring[0]->pouring_time) }} --}}
+//             {{-- dd($guide->total_pour) --}}
+
+//     {{-- <div class="mb-3">
+//         <label for="image" class="form-label">Upload an Image</label>
+//         <input type="hidden" name="oldImage" value="{{ $guide->image }}">
+//         @if($guide->image)
+//         <img src="{{ asset('storage/'.$guide->image) }}" class="img-preview img-fluid mb-1 col-sm-5 d-block">
+//         @else
+//         <img class="img-preview img-fluid mb-1 col-sm-5">
+//         @endif
+//         <input class="form-control mt-1 @error('image') is-invalid
+//          @enderror" type="file" id="image" name="image" onchange="previewImage()">
+//         @error('image')
+//             <div class="invalid-feedback">
+//                 {{ $message }}
+//             </div>
+//         @enderror
+//       </div> --}}
+
+
+    //   {{ $pourings->pouring["+id+"]->pouring_time }}
+
+    // $('#pouring_table').append(
+    //             "<tr id='pouring"+id+"'><td><input type='number' class='form-control' name='pouring_time["+id+"]' required value=''></td><td><input type='number' class='form-control' name='water_ratio["+id+"]' required></td><input type='hidden' class='form-control' name='pouring_order["+id+"]' value='"+step+"'></tr>"
+    //         );
+
+
+    jQuery(#pouring_table).append("<tr><td><input type='number' class='form-control' name='pouring_time["+id+"]' required value='{{ $pourings->pouring["+id+"]->pouring_time }}'></td><td><input type='number' class='form-control' name='water_ratio["+id+"]' required value='{{ $pourings->pouring["+id+"]->water_ratio }}'></td><input type='hidden' class='form-control' name='pouring_order["+id+"]' value='"+step+"'></tr>");
+
+    <!-- <script>
+        var number_of_pour = {{ $guide->total_pour }};
+        var pour_after = number_of_pour - 1;
+        var id = 0;
+        var step = 1;
+    
+        jQuery(document).ready(function(){
+            for(let i = 0; i < pour_after; i++){
+                id++;
+                step++;
+                <?php 
+                    int $id = 0;
+                    int $step = 1;
+                ?>
+                
+            }
+        });
+        
+    </script> -->
+
+    // logic if else jika lebih atau kurang disini
+
+    // if($totalPour < $pourBefore){
+    //     for($i = $totalPour; $i < $pourBefore; $i++){
+    //         $deleted_order = $i + 1;
+    //         Pouring::where('guide_id',$guide->id)->where('pouring_order',$deleted_order)->delete();
+    //     }
+    //     for($i = 0; $i < $totalPour; $i++){
+    //         $order = $i + 1;
+    //         Pouring::where('guide_id',$guide->id)->where('pouring_order',$order)->update([
+    //             'pouring_order'=>$request->pouring_order[$i],
+    //             'pouring_time'=>$request->pouring_time[$i],
+    //             'water_ratio'=>$request->water_ratio[$i]
+    //         ]);
+    //     }
+    // } else
+
+    if($totalPour > $pourBefore){
+        for($i = 0; $i < $pourBefore; $i++){
+            $order = $i + 1;
+            Pouring::where('guide_id',$guide->id)->where('pouring_order',$order)->update([
+                'pouring_order'=>$request->pouring_order[$i],
+                'pouring_time'=>$request->pouring_time[$i],
+                'water_ratio'=>$request->water_ratio[$i]
+            ]);
+        }
+        for($i = $pourBefore; $i < $totalPour; $i++){
+            Pouring::create([
+                'guide_id'=>$guide->id,
+                'pouring_order'=>$request->pouring_order[$i],
+                'pouring_time'=>$request->pouring_time[$i],
+                'water_ratio'=>$request->water_ratio[$i]
+            ]);
+        } // if else nya buat total pour lebih aja, selebihnya default isinya untuk create, jadi yg update ini ikut default aja
+    } else {
+
+
+
+        // {{-- ini untuk progress barnya, print progres sama secondnya, tambah delay
+            //  for(kt = 1; kt <= secondArray; kt++){
+            //      progressAfter += progressTick;
+            //      wadahSecondArray = wadahSecondArray - 1;
+            //      console.log(wadahSecondArray);
+            //  }
+            
+            //  looping for progress bar
+            //  var kate = 1;
+            //  function loopBar(){
+            //      setTimeout(function() {
+            
+            //       progressAfter += progressTick;
+            //       wadahSecondArray = wadahSecondArray - 1;
+            //      console.log('halo');
+            
+            //      kate++;
+            
+            //      if(kate <= secondArray){
+            //          loopBar();
+            //      } else {
+            //          return;
+            //      }
+            //      }, 1000);
+            //  }
+            //  loopBar(); --}}
+            // // waterAfter += calculatedWater; // print waterafternya
+                        // // for loop
+                        // //startProgress(); // kasih params kesini yg butuh
+            
+                        // console.log(secondArray);}
+
+                        for(let i = 0; i < arrayLength; i++){
+                            waterAfter = 0;
+                            progressAfter = 0;
+                            secondArray = pouringTime[i];
+                            wadahSecondArray = parseInt(secondArray);
+                            waterArray = waterRatio[i];
+                            progressTick = 100 / secondArray;
+                            calculatedWater = (waterArray / 100) * totalWater;
+                            console.log('waterrrr'+waterArray);
+                        }
+
+BISA
+var asu = setInterval(function() {
+    console.log(counter);
+    counter++;
+    if(counter == 10){
+        clearInterval(asu);
+    }
+},1000); // making this into for loop with html some shit
