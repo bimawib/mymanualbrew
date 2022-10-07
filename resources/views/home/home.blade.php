@@ -105,7 +105,7 @@
                 </div>
                 <div class="box">
                     <h1>myManualBrew</h1>
-                    <p>myManualBrew is a web application that provides tools such as Manual Brew Guides, Coffee Ratio Calculator, and Blogs to help you make manually brewed coffee!</p>
+                    <p>myManualBrew is a web application that provide tools such as Manual Brew Guides, Coffee Ratio Calculator, and Blogs to help you make manually brewed coffee!</p>
                 </div>
             </div>
         </div>
