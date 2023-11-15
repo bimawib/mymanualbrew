@@ -1,15 +1,16 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\User;
-
 use App\Models\Post;
-use App\Models\Category;
 
+use App\Models\User;
 use App\Models\Guide;
+
+use App\Models\Category;
 use App\Models\GuideCategory;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ProfilePicture;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'name'=>'Bima Wib',
             'username'=>'bimaencun',
             'email'=>'bimawib@gmail.com',
-            'password'=> bcrypt('12345')
+            'password'=> bcrypt('12345678')
         ]);
         // User::create([
         //     'name'=>'Chika Eden',
@@ -94,30 +95,53 @@ class DatabaseSeeder extends Seeder
             "user_id" => 1
         ]);
 
-        Guide::create([
-        "title" => "Gayo Wine with Tetsu Katsuya Method",
-        "user_id" => 1,
-        "guide_category_id" => 1,
-        "slug" => "gayo-wine-with-tetsu-katsuya-method",
-        "origin" => "Gayo Highland, Aceh",
-        "proses"=> "Wine Process",
-        "notes" => "Red Wine, Fruity",
-        "ratio" => "15",
-        "body" => "[[0.25,45],[0.15,45],[0.20,45],[0.20,45],[0.20,45]]"
+        // Guide::create([
+        // "title" => "Gayo Wine with Tetsu Katsuya Method",
+        // "user_id" => 1,
+        // "guide_category_id" => 1,
+        // "slug" => "gayo-wine-with-tetsu-katsuya-method",
+        // "origin" => "Gayo Highland, Aceh",
+        // "proses"=> "Wine Process",
+        // "notes" => "Red Wine, Fruity",
+        // "ratio" => "15",
+        // "body" => "[[0.25,45],[0.15,45],[0.20,45],[0.20,45],[0.20,45]]"
+        // ]);
+
+        // Guide::create([
+        // "title" => "Gayo Wine Tubruk",
+        // "user_id" => 2,
+        // "guide_category_id" => 2,
+        // "slug" => "gayo-wine-tubruk",
+        // "origin" => "Gayo Highland, Aceh",
+        // "proses"=> "Wine Process",
+        // "notes" => "Red Wine, Fruity",
+        // "ratio" => "18",
+        // "body" => "[[1,180]]"
+        // ]);
+
+        ProfilePicture::create([
+            "user_id" => 1,
+            "profile_pictures" => "https://res.cloudinary.com/ddz9dz0ew/image/upload/v1664258272/mymanualbrew/2022-09-27_055816_urucanooreda.jpg"
         ]);
 
-        Guide::create([
-        "title" => "Gayo Wine Tubruk",
-        "user_id" => 2,
-        "guide_category_id" => 2,
-        "slug" => "gayo-wine-tubruk",
-        "origin" => "Gayo Highland, Aceh",
-        "proses"=> "Wine Process",
-        "notes" => "Red Wine, Fruity",
-        "ratio" => "18",
-        "body" => "[[1,180]]"
+        ProfilePicture::create([
+            "user_id" => 2,
+            "profile_pictures" => "https://res.cloudinary.com/ddz9dz0ew/image/upload/v1664258272/mymanualbrew/2022-09-27_055816_urucanooreda.jpg"
         ]);
 
-        
+        ProfilePicture::create([
+            "user_id" => 3,
+            "profile_pictures" => "https://res.cloudinary.com/ddz9dz0ew/image/upload/v1664258272/mymanualbrew/2022-09-27_055816_urucanooreda.jpg"
+        ]);
+
+        ProfilePicture::create([
+            "user_id" => 4,
+            "profile_pictures" => "https://res.cloudinary.com/ddz9dz0ew/image/upload/v1664258272/mymanualbrew/2022-09-27_055816_urucanooreda.jpg"
+        ]);
+
+        ProfilePicture::create([
+            "user_id" => 5,
+            "profile_pictures" => "https://res.cloudinary.com/ddz9dz0ew/image/upload/v1664258272/mymanualbrew/2022-09-27_055816_urucanooreda.jpg"
+        ]);
     }
 }

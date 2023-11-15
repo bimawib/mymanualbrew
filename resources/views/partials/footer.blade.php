@@ -12,5 +12,5 @@
             <img src="{{ URL::asset('img/iglogo.jpg') }}" alt="instagram">
         </a>
     </div>
-    <h2>Copyright © 2022 | <a href="http://bimawib.space/" class="bimawib">bimawib.space</a></h2>
+    <h2>Copyright © 2023 | <a href="http://bimawib.space/" class="bimawib">bimawib.space</a></h2>
 </footer>

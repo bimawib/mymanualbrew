@@ -82,7 +82,7 @@
                 <img src="img/iglogo.jpg" alt="instagram">
             </a>
         </div>
-        <h2>Copyright © 2022 <a href="http://bimawib.space/" class="bimawib">bimawib.</a></h2>
+        <h2>Copyright © 2023 <a href="http://bimawib.space/" class="bimawib">bimawib.</a></h2>
     </footer>
     
     <script src="js/script.js"></script>
